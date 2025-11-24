@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kevin & Naty — Nuestra Boda</title>
+
+  <!-- Fuentes elegantes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *{max-width:100%;box-sizing:border-box;}
+html,body{width:100%;max-width:100%;overflow-x:hidden;}
+:root{
+      --bg:#faf7f2;
+      --white:#ffffff;
+      --text:#3f3a32;
+      --muted:#7a7369;
+      --primary:#2f4f4f;
+      --accent:#bfa27d;
+      --soft:#f1ebe4;
+      --soft-2:#e8dfd3;
+      --glass: rgba(255,255,255,0.7);
+      --heading: 'Playfair Display', serif;
+      --cursive: 'Great Vibes', cursive;
+      --ui: 'Inter', sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ui);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;width:100%;max-width:100%;overflow-x:hidden;}
+
+    p {
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    /* NAV */
+    header.site-header{position:fixed;left:0;right:0;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:transparent;transition:background .35s,backdrop-filter .35s}
+    header.site-header.scrolled{background:rgba(255,255,255,0.82);backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,0.06)}
+    .brand{display:flex;align-items:center;gap:12px}
+
+    /* monograma romántico: SVG simple con tipografía cursiva */
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo .mark{font-family:var(--cursive);font-size:28px;color:var(--primary);}
+    .logo .tag{font-family:var(--heading);font-weight:600;color:var(--muted);letter-spacing:1px}
+
+    nav.main-nav{display:flex;gap:18px;align-items:center}
+    nav.main-nav a{color:var(--text);text-decoration:none;font-weight:600}
+    .nav-toggle{display:none;border:0;background:none;font-size:20px}
+
+    /* HERO con parallax control */
+    .hero{height:100vh;min-height:560px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .hero__bg{position:absolute;inset:0;background-image:url('bg.jpeg');background-size:cover;background-position:center center;transform:translateY(0);will-change:transform;transition:transform .15s linear}
+    .hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.35));transition:opacity .3s}
+    .hero__content{position:relative;z-index:4;text-align:center;color:var(--white);padding:20px}
+    .hero .label{letter-spacing:4px;text-transform:uppercase;font-size:.9rem;opacity:.95}
+    .hero h1{font-family:var(--heading);font-size:clamp(3rem,9vw,6rem);margin-top:.6rem;color:var(--white);text-shadow:2px 2px 18px rgba(0,0,0,.6)}
+
+    #celebrate-section {
+        margin-top: 45px;
+    }
+
+    /* SECCIONES */
+    section{padding:50px 0}
+    .container{width:min(1100px,94%);margin:0 auto}
+
+    /* Dos columnas */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}
+    @media(max-width:920px){
+      .grid-2{grid-template-columns:1fr;gap:28px}
+      .img-rounded{height:auto;max-height:260px;width:100%;object-fit:cover}
+      section{padding:70px 0}
+    }
+
+    .img-rounded{width:100%;border-radius:16px;object-fit:cover;box-shadow:0 18px 40px rgba(0,0,0,0.06);height:420px;border-radius: 24px;}
+    .contenedor-imagen {
+        overflow: hidden;
+        position: relative;
+        height: 350px;
+    }
+    .contenedor-imagen img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* COUNTDOWN (con fondo de imagen) */
+    #countdown-section{position:relative;overflow:hidden; padding: 90px; margin-top: 45px; margin-bottom: 45px;}
+    #countdown-section .bg{position:absolute;inset:0;background-image:url('jupa.jpg');background-size:cover;background-position:center;opacity:.25;filter:grayscale(30%);}
+    #countdown-wrap{position:relative;z-index:3;text-align:center}
+
+    #countdown{display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+    .counter-card{background:var(--white);padding:16px;border-radius:12px;width:110px;text-align:center;border:1px solid var(--soft-2);box-shadow:0 8px 30px rgba(0,0,0,0.05)}
+    .counter-card span{display:block;font-weight:700;font-size:2rem;color:var(--primary)}
+    .counter-card small{display:block;margin-top:6px;color:var(--muted);text-transform:uppercase;font-size:.6rem}
+
+    /* MAP */
+    .map-container{border-radius:14px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.06)}
+
+    /* GUIA / QUÉ HACER */
+    .guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .card{background:var(--white);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+    .guide-img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+
+    /* DESTINOS y ALOJAMIENTO sección */
+    .place-list{display:flex;flex-direction:column;gap:12px;text-align:left}
+    .place{display:flex;gap:12px;align-items:flex-start}
+    .place img{width:120px;height:80px;object-fit:cover;border-radius:8px}
+    .place .meta{font-size:.95rem}
+
+    /* REGALO y BOTONES */
+    .button{display:inline-block;background:var(--accent);color:white;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:700;cursor: pointer;}
+
+    /* FOOTER */
+    footer{padding:48px 0;text-align:center}
+
+    /* Animaciones: elementos que aparecerán */
+    [data-animate]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .in-view{opacity:1;transform:translateY(0)}
+
+    /* NAV Mobile */
+    .mobile-nav{display:none}
+    @media(max-width:760px){
+      nav.main-nav{display:none}
+      .nav-toggle{display:block}
+      .mobile-nav{display:none;position:fixed;left:0;right:0;top:62px;background:rgba(255,255,255,0.98);flex-direction:column;padding:18px 24px;gap:16px;z-index:65;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+      .mobile-nav.show{display:flex}
+
+      h1{font-size:2.8rem !important;line-height:1.1}
+      .hero{height:78vh;min-height:480px}
+      .hero__content{padding:0 12px}
+
+      #countdown{gap:10px}
+      .counter-card{max-width:80px;padding:12px 10px}
+      .counter-card span{font-size:1.6rem}
+
+      .guide-grid{grid-template-columns:1fr;gap:18px}
+      .place{flex-direction:column}
+      .place img{width:100%;height:150px;border-radius:10px}
+
+      iframe{height:300px !important}
+    }
+      .nav-toggle{display:block}
+      .mobile-nav{display:flex;position:fixed;left:0;right:0;top:62px;background:rgba(255,255,255,0.98);flex-direction:column;padding:12px 20px;gap:10px;z-index:65;box-shadow:0 8px 30px rgba(0,0,0,0.08);display:none}
+      .mobile-nav.show{display:flex}
+    }
+
+    /* Accessibility focus states */
+    a:focus{outline:3px solid rgba(191,162,125,0.25);outline-offset:3px}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header" id="siteHeader">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Monograma romántico: K ✦ N usando fuente cursiva -->
+          <div class="mark">K & N</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#celebrate-section">Inicio</a>
+        <a href="#countdown-section">Cuándo</a>
+        <a href="#salon-section">El Salón</a>
+        <a href="#guia-section">Qué Hacer</a>
+        <a href="#regalo">Regalo</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" role="menu">
+      <a href="#celebrate-section">Inicio</a>
+      <a href="#countdown-section">Cuándo</a>
+      <a href="#salon-section">El Salón</a>
+      <a href="#guia-section">Qué Hacer</a>
+      <a href="#regalo">Regalo</a>
+      <a href="#rsvp">RSVP</a>
+    </div>
+  </header>
+
+  <!-- HERO with parallax bg -->
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero__overlay" id="heroOverlay"></div>
+
+      <div class="hero__content container">
+        <p class="label" data-animate> Nuestra Boda </p>
+        <h1 data-animate>Kevin &amp; Naty</h1>
+        <!-- <p style="margin-top:14px;color:rgba(255,255,255,0.92)" data-animate>Te invitamos a celebrar con nosotros</p> -->
+      </div>
+    </section>
+
+    <!-- PRESENTACIÓN -->
+    <section id="celebrate-section">
+      <div class="container grid-2">
+        <div class="contenedor-imagen">
+            <img src="corazon.jpeg" alt="Kevin y Naty" class="img-rounded" loading="lazy" data-animate>
+        </div>
+        <div data-animate>
+          <h2>Empezamos a escribir nuestro para siempre</h2>
+          <p>Hay momentos en la vida que son únicos, y queremos compartir el nuestro contigo. Nos llena de alegría que seas parte de esta celebración tan especial.</p>
+          <p>Tu presencia es lo que hará este día inolvidable.</p>
+          <a class="button" href="#rsvp" style="margin-top:12px">Confirmar asistencia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN con fondo de imagen (jupa.jpg) -->
+    <section id="countdown-section">
+      <div class="bg" aria-hidden="true"></div>
+      <div class="container" id="countdown-wrap">
+        <h2 data-animate>Preparáte para festejar</h2>
+        <p data-animate style="font-weight:600">Domingo 24 de Mayo de 2026 – 12:00 hs</p>
+
+        <div id="countdown" data-animate>
+          <div class="counter-card"><span id="days">--</span><small>Días</small></div>
+          <div class="counter-card"><span id="hours">--</span><small>Horas</small></div>
+          <div class="counter-card"><span id="minutes">--</span><small>Minutos</small></div>
+          <div class="counter-card"><span id="seconds">--</span><small>Segundos</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALÓN -->
+    <section id="salon-section">
+      <div class="container text-center" data-animate>
+        <h2>El Salón</h2>
+        <h3>Complejo Santa Barbara</h3>
+        <p>Av. Cdad. de Valparaíso 6000 — Córdoba</p>
+
+        <div style="margin-top:22px" class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.730245051086!2d-64.20967162445889!3d-31.476409274233777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a3d76e2714ef%3A0x633513a48e0403a7!2sAv.%20Cdad.%20de%20Valpara%C3%ADso%206000%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1692823438139!5m2!1ses-419!2sar" width="100%" height="420" style="border:0;" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUÍA: Qué hacer -->
+    <section id="guia-section">
+      <div class="container">
+        <div class="text-center" data-animate>
+          <h2>Qué hacer</h2>
+          <p>Algunos de nuestros lugares favoritos de Córdoba para visitar.</p>
+        </div>
+
+        <div class="guide-grid" style="margin-top:18px">
+          <div class="card" data-animate>
+            <img src="manzana.jpg" alt="Manzana Jesuítica" class="guide-img">
+            <h3>Manzana Jesuítica</h3>
+            <p>Recorrido histórico declarado Patrimonio de la Humanidad por la UNESCO.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="guemes.jpg" alt="Barrio Güemes" class="guide-img">
+            <h3>Barrio Güemes</h3>
+            <p>Feria de artesanos, locales de diseño y el mejor polo gastronómico.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="buenpastor.jpg" alt="Paseo del Buen Pastor" class="guide-img">
+            <h3>Paseo del Buen Pastor</h3>
+            <p>Un ícono cultural con fuentes, exposiciones y cafés.</p>
+          </div>
+        </div>
+
+        <!-- 
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px">
+          <div class="card" data-animate>
+            <h3>Cómo llegar</h3>
+            <div class="place-list">
+              <div class="place">
+                <img src="corazon.jpeg" alt="avion" loading="lazy">
+                <div class="meta"><strong>Avión</strong><br>Aeropuerto Córdoba (COR) — 30 min al centro. Recomendamos JetSmart o Aerolíneas Argentinas.</div>
+              </div>
+
+              <div class="place">
+                <img src="corazon.jpeg" alt="omnibus" loading="lazy">
+                <div class="meta"><strong>Ómnibus</strong><br>Terminal de Ómnibus con conexiones desde todo el país.</div>
+              </div>
+
+              <div class="place">
+                <img src="corazon.jpeg" alt="auto" loading="lazy">
+                <div class="meta"><strong>Auto</strong><br>Fácil acceso por rutas y autopistas; estacionamiento en el complejo.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-animate>
+            <h3>Dónde hospedarse</h3>
+            <div class="place-list">
+              <div class="place">
+                <img src="corazon.jpeg" alt="nueva cordoba" loading="lazy">
+                <div class="meta"><strong>Nueva Córdoba</strong><br>Moderno y céntrico; ideal si querés vida nocturna y restaurantes cerca.</div>
+              </div>
+
+              <div class="place">
+                <img src="corazon.jpeg" alt="cerro" loading="lazy">
+                <div class="meta"><strong>Cerro de las Rosas</strong><br>Barrio residencial elegante con gran oferta gastronómica.</div>
+              </div>
+
+              <div class="place">
+                <img src="corazon.jpeg" alt="centro" loading="lazy">
+                <div class="meta"><strong>Centro Histórico</strong><br>Para quienes disfrutan de paseos a pie y arquitectura.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        -->
+
+      </div>
+    </section>
+
+    <section id="llegar-section">
+      <div class="container">
+        <div class="text-center" data-animate>
+          <h2>Cómo llegar</h2>
+        </div>
+
+        <div class="guide-grid" style="margin-top:18px">
+          <div class="card" data-animate>
+            <img src="JetSMART.jpg" alt="Manzana Jesuítica" class="guide-img">
+            <h3>Avión</h3>
+            <p>Aeropuerto Córdoba (COR) — 30 min al centro. Recomendamos JetSmart o Aerolíneas Argentinas.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="bus.jpg" alt="Barrio Güemes" class="guide-img">
+            <h3>Ómnibus</h3>
+            <p>Terminal de Ómnibus con conexiones desde todo el país.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="auto.jpeg" alt="Paseo del Buen Pastor" class="guide-img">
+            <h3>Auto</h3>
+            <p>Fácil acceso por rutas y autopistas; estacionamiento en el complejo.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="guia-section">
+      <div class="container">
+        <div class="text-center" data-animate>
+          <h2>Dónde hospedarse</h2>
+          <p>Recomendamos hospedarse en el barrio Nueva Cordoba. Un barrio moderno y céntrico; ideal si querés vida nocturna y restaurantes cerca. Les compartimos algunos hoteles recomendados.</p>
+        </div>
+
+        <div class="guide-grid" style="margin-top:18px">
+          <div class="card" data-animate>
+            <img src="manzana.jpg" alt="Manzana Jesuítica" class="guide-img">
+            <h3>Manzana Jesuítica</h3>
+            <p>Recorrido histórico declarado Patrimonio de la Humanidad por la UNESCO.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="guemes.jpg" alt="Barrio Güemes" class="guide-img">
+            <h3>Barrio Güemes</h3>
+            <p>Feria de artesanos, locales de diseño y el mejor polo gastronómico.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="buenpastor.jpg" alt="Paseo del Buen Pastor" class="guide-img">
+            <h3>Paseo del Buen Pastor</h3>
+            <p>Un ícono cultural con fuentes, exposiciones y cafés.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REGALO -->
+    <section id="regalo">
+      <div class="container text-center" data-animate>
+        <h2>Un detalle especial</h2>
+        <p>El mejor regalo es que compartas este día con nosotros. Si querés colaborar con un gesto, preferimos una contribución para nuestra luna de miel.</p>
+        <div style="margin-top:14px">
+          <a class="button" id="giftButton">Ver datos para transferencia</a>
+        </div>
+
+        <div class="card" id="bankDetails" style="max-width:640px;margin:18px auto 0;display:none;text-align:left">
+          <p><strong>Alias:</strong> ALIAS.BANCARIO.AQUI</p>
+          <p><strong>CBU/CVU:</strong> 0000000000000000000000</p>
+          <p><strong>Titular:</strong> Nombre Completo del Titular</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <div class="container text-center" data-animate>
+        <h2>¡Confirmá tu asistencia!</h2>
+        <p>Nos ayudaría mucho que nos confirmes tu presencia y restricciones alimentarias antes del 15 de Marzo de 2026.</p>
+        <div style="margin-top:12px">
+          <a class="button" href="https://wa.me/5493511234567?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Kevin%20y%20Naty" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container text-center">
+        <p style="font-family:var(--heading);color:var(--muted);font-size:1.1rem">Kevin & Naty</p>
+        <small style="color:var(--muted)">Gracias por acompañarnos — 24 de Mayo, 2026</small>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // NAV: mobile toggle + scrolled class
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const header = document.getElementById('siteHeader');
+    navToggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('show');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    });
+
+    // PARALLAX: movemos el background del hero según scroll (suave y economico)
+    const heroBg = document.getElementById('heroBg');
+    const heroOverlay = document.getElementById('heroOverlay');
+    function onScrollParallax(){
+      const sc = window.scrollY;
+      // limitamos el movimiento para evitar jank
+      const translate = Math.min(sc * 0.3, 250);
+      heroBg.style.transform = `translateY(${translate}px)`;
+      // reducir overlay opacity para efecto de desaparición gradual
+      const o = Math.max(0.2, 0.85 - sc/600);
+      heroOverlay.style.opacity = o;
+    }
+    window.addEventListener('scroll', onScrollParallax, {passive:true});
+
+    // SIMPLE INTERSECTION OBSERVER para animaciones
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+
+    // COUNTDOWN corregido (incluye segundos)
+    const target = new Date('2026-05-24T12:00:00-03:00').getTime();
+    function updateCountdown(){
+      const now = Date.now();
+      const diff = target - now;
+      if (diff <= 0){
+        document.getElementById('countdown').innerHTML = '<div class="counter-card"><span>0</span><small>¡Hoy!</small></div>';
+        clearInterval(cntInterval);
+        return;
+      }
+      const secondsTotal = Math.floor(diff/1000);
+      const days = Math.floor(secondsTotal / (60*60*24));
+      const hours = Math.floor((secondsTotal % (60*60*24)) / (60*60));
+      const minutes = Math.floor((secondsTotal % (60*60)) / 60);
+      const seconds = secondsTotal % 60;
+
+      document.getElementById('days').textContent = String(days).padStart(2,'0');
+      document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+    }
+    updateCountdown();
+    const cntInterval = setInterval(updateCountdown, 1000);
+
+    // Gift toggle
+    const giftBtn = document.getElementById('giftButton');
+    const bank = document.getElementById('bankDetails');
+    giftBtn.addEventListener('click', () => {
+      const show = bank.style.display !== 'block';
+      bank.style.display = show ? 'block' : 'none';
+      giftBtn.textContent = show ? 'Ocultar datos' : 'Ver datos para transferencia';
+    });
+
+    // Mejoras responsive: asegurar imágenes no overflow
+    document.querySelectorAll('img').forEach(img => img.setAttribute('decoding','async'));
+
+  </script>
+</body>
+</html>
