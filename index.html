@@ -66,6 +66,10 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
         margin-top: 45px;
     }
 
+    .text-center {
+      text-align: center;
+    }
+
     /* SECCIONES */
     section{padding:50px 0}
     .container{width:min(1100px,94%);margin:0 auto}
@@ -75,7 +79,20 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     @media(max-width:920px){
       .grid-2{grid-template-columns:1fr;gap:28px}
       .img-rounded{height:auto;max-height:260px;width:100%;object-fit:cover}
-      section{padding:70px 0}
+      section {
+        padding: 50px 0px 10px 0px;
+      }
+      .contenedor-imagen {
+        height: auto !important;
+      }
+      #celebrate-section {
+        margin-top: 20px;
+        margin-bottom: 45px;
+      }
+
+      #celebrate-section .in-view {
+        text-align: center;
+      }
     }
 
     .img-rounded{width:100%;border-radius:16px;object-fit:cover;box-shadow:0 18px 40px rgba(0,0,0,0.06);height:420px;border-radius: 24px;}
@@ -139,8 +156,16 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       .hero__content{padding:0 12px}
 
       #countdown{gap:10px}
-      .counter-card{max-width:80px;padding:12px 10px}
-      .counter-card span{font-size:1.6rem}
+      .counter-card{max-width:70px;padding:12px 10px}
+      .counter-card span{font-size:1.5rem}
+
+      #countdown-section {
+        padding: 4px;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
 
       .guide-grid{grid-template-columns:1fr;gap:18px}
       .place{flex-direction:column}
@@ -172,7 +197,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#celebrate-section">Inicio</a>
         <a href="#countdown-section">Cuándo</a>
-        <a href="#salon-section">El Salón</a>
+        <a href="#salon-section">Dónde</a>
         <a href="#guia-section">Qué Hacer</a>
         <a href="#regalo">Regalo</a>
         <a href="#rsvp">RSVP</a>
@@ -186,7 +211,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     <div class="mobile-nav" id="mobileNav" role="menu">
       <a href="#celebrate-section">Inicio</a>
       <a href="#countdown-section">Cuándo</a>
-      <a href="#salon-section">El Salón</a>
+      <a href="#salon-section">Dónde</a>
       <a href="#guia-section">Qué Hacer</a>
       <a href="#regalo">Regalo</a>
       <a href="#rsvp">RSVP</a>
@@ -225,8 +250,9 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     <section id="countdown-section">
       <div class="bg" aria-hidden="true"></div>
       <div class="container" id="countdown-wrap">
-        <h2 data-animate>Preparáte para festejar</h2>
+        <h2 data-animate style="margin-bottom: 16px;">Preparate para festejar</h2>
         <p data-animate style="font-weight:600">Domingo 24 de Mayo de 2026 – 12:00 hs</p>
+        <p data-animate style="font-family: var(--cursive);font-size: 20px;">Dress code: Elegante</p>
 
         <div id="countdown" data-animate>
           <div class="counter-card"><span id="days">--</span><small>Días</small></div>
@@ -239,8 +265,8 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
 
     <!-- SALÓN -->
     <section id="salon-section">
-      <div class="container text-center" data-animate>
-        <h2>El Salón</h2>
+      <div class="container" data-animate>
+        <h2>Dónde</h2>
         <h3>Complejo Santa Barbara</h3>
         <p>Av. Cdad. de Valparaíso 6000 — Córdoba</p>
 
@@ -250,84 +276,9 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       </div>
     </section>
 
-    <!-- GUÍA: Qué hacer -->
-    <section id="guia-section">
-      <div class="container">
-        <div class="text-center" data-animate>
-          <h2>Qué hacer</h2>
-          <p>Algunos de nuestros lugares favoritos de Córdoba para visitar.</p>
-        </div>
-
-        <div class="guide-grid" style="margin-top:18px">
-          <div class="card" data-animate>
-            <img src="manzana.jpg" alt="Manzana Jesuítica" class="guide-img">
-            <h3>Manzana Jesuítica</h3>
-            <p>Recorrido histórico declarado Patrimonio de la Humanidad por la UNESCO.</p>
-          </div>
-
-          <div class="card" data-animate>
-            <img src="guemes.jpg" alt="Barrio Güemes" class="guide-img">
-            <h3>Barrio Güemes</h3>
-            <p>Feria de artesanos, locales de diseño y el mejor polo gastronómico.</p>
-          </div>
-
-          <div class="card" data-animate>
-            <img src="buenpastor.jpg" alt="Paseo del Buen Pastor" class="guide-img">
-            <h3>Paseo del Buen Pastor</h3>
-            <p>Un ícono cultural con fuentes, exposiciones y cafés.</p>
-          </div>
-        </div>
-
-        <!-- 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px">
-          <div class="card" data-animate>
-            <h3>Cómo llegar</h3>
-            <div class="place-list">
-              <div class="place">
-                <img src="corazon.jpeg" alt="avion" loading="lazy">
-                <div class="meta"><strong>Avión</strong><br>Aeropuerto Córdoba (COR) — 30 min al centro. Recomendamos JetSmart o Aerolíneas Argentinas.</div>
-              </div>
-
-              <div class="place">
-                <img src="corazon.jpeg" alt="omnibus" loading="lazy">
-                <div class="meta"><strong>Ómnibus</strong><br>Terminal de Ómnibus con conexiones desde todo el país.</div>
-              </div>
-
-              <div class="place">
-                <img src="corazon.jpeg" alt="auto" loading="lazy">
-                <div class="meta"><strong>Auto</strong><br>Fácil acceso por rutas y autopistas; estacionamiento en el complejo.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" data-animate>
-            <h3>Dónde hospedarse</h3>
-            <div class="place-list">
-              <div class="place">
-                <img src="corazon.jpeg" alt="nueva cordoba" loading="lazy">
-                <div class="meta"><strong>Nueva Córdoba</strong><br>Moderno y céntrico; ideal si querés vida nocturna y restaurantes cerca.</div>
-              </div>
-
-              <div class="place">
-                <img src="corazon.jpeg" alt="cerro" loading="lazy">
-                <div class="meta"><strong>Cerro de las Rosas</strong><br>Barrio residencial elegante con gran oferta gastronómica.</div>
-              </div>
-
-              <div class="place">
-                <img src="corazon.jpeg" alt="centro" loading="lazy">
-                <div class="meta"><strong>Centro Histórico</strong><br>Para quienes disfrutan de paseos a pie y arquitectura.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
-
-      </div>
-    </section>
-
     <section id="llegar-section">
       <div class="container">
-        <div class="text-center" data-animate>
+        <div class="" data-animate>
           <h2>Cómo llegar</h2>
         </div>
 
@@ -356,9 +307,39 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
 
     <section id="guia-section">
       <div class="container">
-        <div class="text-center" data-animate>
+        <div class="" data-animate>
           <h2>Dónde hospedarse</h2>
           <p>Recomendamos hospedarse en el barrio Nueva Cordoba. Un barrio moderno y céntrico; ideal si querés vida nocturna y restaurantes cerca. Les compartimos algunos hoteles recomendados.</p>
+        </div>
+
+        <div class="guide-grid" style="margin-top:18px">
+          <div class="card" data-animate>
+            <img src="manzana.jpg" alt="Manzana Jesuítica" class="guide-img">
+            <h3>Manzana Jesuítica</h3>
+            <p>Recorrido histórico declarado Patrimonio de la Humanidad por la UNESCO.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="guemes.jpg" alt="Barrio Güemes" class="guide-img">
+            <h3>Barrio Güemes</h3>
+            <p>Feria de artesanos, locales de diseño y el mejor polo gastronómico.</p>
+          </div>
+
+          <div class="card" data-animate>
+            <img src="buenpastor.jpg" alt="Paseo del Buen Pastor" class="guide-img">
+            <h3>Paseo del Buen Pastor</h3>
+            <p>Un ícono cultural con fuentes, exposiciones y cafés.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="guia-section">
+      <div class="container">
+        <div class="" data-animate>
+          <h2>Qué hacer</h2>
+          <p>Algunos de nuestros lugares favoritos de Córdoba para visitar.</p>
         </div>
 
         <div class="guide-grid" style="margin-top:18px">
