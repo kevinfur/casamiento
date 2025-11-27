@@ -40,6 +40,10 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
         font-size: 1.8em;
     }
 
+    #salon-section h2 {
+      margin-bottom: 12px;
+    }
+
     /* NAV */
     header.site-header{position:fixed;left:0;right:0;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:transparent;transition:background .35s,backdrop-filter .35s}
     header.site-header.scrolled{background:rgba(255,255,255,0.82);backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,0.06)}
@@ -70,9 +74,23 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       text-align: center;
     }
 
+    .rsvp-bg {
+      padding-top: 45px;
+      padding-bottom: 45px;
+      background-image: radial-gradient(circle at top left, #edfff7 0%, #f3e8e8 50%, #eff8ef 100%);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
     /* SECCIONES */
     section{padding:50px 0}
     .container{width:min(1100px,94%);margin:0 auto}
+
+    .mobile-nav a {
+      color: #666;
+      font-size: 18px;
+      text-decoration: none;
+      margin-bottom: 4px;
+    }
 
     /* Dos columnas */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}
@@ -92,6 +110,11 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
 
       #celebrate-section .in-view {
         text-align: center;
+      }
+
+      .rsvp-bg {
+        padding-top: 26px;
+        padding-bottom: 26px;
       }
     }
 
@@ -136,6 +159,12 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     /* REGALO y BOTONES */
     .button{display:inline-block;background:var(--accent);color:white;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:700;cursor: pointer;}
 
+    .button.ig{
+      background: white;
+      color: #666;
+      border: 1px solid #ddd;
+    }
+
     /* FOOTER */
     footer{padding:48px 0;text-align:center}
 
@@ -173,8 +202,8 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
 
       iframe{height:300px !important}
     }
-      .nav-toggle{display:block}
-      .mobile-nav{display:flex;position:fixed;left:0;right:0;top:62px;background:rgba(255,255,255,0.98);flex-direction:column;padding:12px 20px;gap:10px;z-index:65;box-shadow:0 8px 30px rgba(0,0,0,0.08);display:none}
+      
+    .mobile-nav{display:flex;position:fixed;left:0;right:0;top:62px;background:rgba(255,255,255,0.98);flex-direction:column;padding:12px 20px;gap:10px;z-index:65;box-shadow:0 8px 30px rgba(0,0,0,0.08);display:none}
       .mobile-nav.show{display:flex}
     }
 
@@ -374,19 +403,23 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
         <div class="card" id="bankDetails" style="max-width:640px;margin:18px auto 0;display:none;text-align:left">
           <p><strong>Alias:</strong> kevinfurman</p>
           <p><strong>CBU:</strong> 0720014488000025037436</p>
-          <p><strong>Número de cuenta:</strong> 014-250374/3</p>          
+          <p><strong>Número de cuenta:</strong> 014-250374/3</p>
+          <p><strong>Tipo:</strong> Cuenta única para $ y U$D</p>
           <p><strong>Titular:</strong> Kevin Alan Furman</p>
+          <p><strong>Banco:</strong> Santander</p>
         </div>
       </div>
     </section>
 
     <!-- RSVP -->
     <section id="rsvp">
-      <div class="container text-center" data-animate>
-        <h2>¡Confirmá tu asistencia!</h2>
-        <p>Nos ayudaría mucho que nos confirmes tu presencia y restricciones alimentarias antes del 15 de Marzo de 2026.</p>
-        <div style="margin-top:12px">
-          <a class="button" href="https://wa.me/5491140370621?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Kevin%20y%20Naty!" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+      <div class="rsvp-bg">
+        <div class="container text-center" data-animate>
+          <h2>¡Confirmá tu asistencia!</h2>
+          <p>Nos ayudaría mucho que nos confirmes tu presencia y restricciones alimentarias antes del 15 de Marzo de 2026.</p>
+          <div style="margin-top:12px">
+            <a class="button" href="%C2%A1Hola%21%20Confirmo%20la%20asistencia%20a%20la%20boda%20de%20Kevin%20y%20Naty%20%F0%9F%98%8A%0A%0AEnvianos%20el%20nombre%20y%20apellido%20de%20cada%20asistente%20y%20si%20tiene%20alguna%20restricci%C3%B3n%20alimentaria." target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>
@@ -397,7 +430,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
         <h2>Seguí nuestro Instagram</h2>
         <p>Si no querés perderte nada seguí al Instagram de la boda. Consejos, fotos y toda la información para disfrutar al máximo.</p>
         <div style="margin-top:12px">
-          <a class="button" href="https://www.instagram.com/bodakevinynaty?igsh=Y3Z3bzNkMXVqdHV6" target="_blank" rel="noopener">@bodakevinynaty</a>
+          <a class="button ig" href="https://www.instagram.com/bodakevinynaty?igsh=Y3Z3bzNkMXVqdHV6" target="_blank" rel="noopener">@bodakevinynaty</a>
         </div>
       </div>
     </section>
