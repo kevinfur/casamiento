@@ -213,43 +213,51 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
 
     /* Accessibility focus states */
     a:focus{outline:3px solid rgba(191,162,125,0.25);outline-offset:3px}
+
+
+    /* FIXED FOOTER NAV */
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+
+    .fixed-footer a {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .fixed-footer i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .fixed-footer a.primary {
+      color: var(--primary);
+    }
+
+    /* evitar que tape contenido */
+    body {
+      padding-bottom: 80px;
+    }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <header class="site-header" id="siteHeader">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <!-- Monograma romántico: K ✦ N usando fuente cursiva -->
-          <div class="mark">K & N</div>
-        </div>
-      </div>
-
-      <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#celebrate-section">Inicio</a>
-        <a href="#countdown-section">Cuándo</a>
-        <a href="#salon-section">Dónde</a>
-        <a href="#guia-section">Qué Hacer</a>
-        <a href="#regalo">Regalo</a>
-        <a href="#rsvp">RSVP</a>
-      </nav>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
-    <div class="mobile-nav" id="mobileNav" role="menu">
-      <a href="#celebrate-section">Inicio</a>
-      <a href="#countdown-section">Cuándo</a>
-      <a href="#salon-section">Dónde</a>
-      <a href="#guia-section">Qué Hacer</a>
-      <a href="#regalo">Regalo</a>
-      <a href="#rsvp">RSVP</a>
-    </div>
-  </header>
 
   <!-- HERO with parallax bg -->
   <main>
@@ -334,7 +342,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       <div class="rsvp-bg">
         <div class="container text-center" data-animate>
           <h2>¡Confirmá tu asistencia!</h2>
-          <p>Nos ayudaría mucho que nos confirmes tu presencia y restricciones alimentarias antes del 15 de Marzo de 2026.</p>
+          <p>Nos ayudaría mucho que nos confirmes tu presencia y restricciones alimentarias antes del 1 de Mayo de 2026.</p>
           <div style="margin-top:12px">
             <a class="button" href="https://wa.me/5491140370621?text=Hola%21%20Confirmo%20la%20asistencia%20a%20la%20boda%20de%20Kevin%20y%20Naty%20%3A%29%0A%0APor%20favor%2C%20complet%C3%A1%20por%20cada%20asistente%3A%0A%0A-%20Nombre%20y%20Apellido%3A%0A-%20Restricci%C3%B3n%20alimentaria%3A" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
           </div>
@@ -447,20 +455,25 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     </footer>
   </main>
 
+  <!-- FIXED FOOTER -->
+  <div class="fixed-footer">
+    <a href="#rsvp" class="primary">
+      <i class="fas fa-check-circle"></i>
+      Confirmar
+    </a>
+    <a href="#salon-section">
+      <i class="fas fa-map-marker-alt"></i>
+      Ubicación
+    </a>
+    <a href="#regalo" id="footerGiftBtn">
+      <i class="fas fa-gift"></i>
+      Regalo
+    </a>
+  </div>
+
+
+
   <script>
-    // NAV: mobile toggle + scrolled class
-    const navToggle = document.getElementById('navToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    const header = document.getElementById('siteHeader');
-    navToggle.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('show');
-      navToggle.setAttribute('aria-expanded', open);
-    });
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    });
-
     // PARALLAX: movemos el background del hero según scroll (suave y economico)
     const heroBg = document.getElementById('heroBg');
     const heroOverlay = document.getElementById('heroOverlay');
@@ -519,6 +532,15 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
     // Mejoras responsive: asegurar imágenes no overflow
     document.querySelectorAll('img').forEach(img => img.setAttribute('decoding','async'));
 
+
+    const footerGiftBtn = document.getElementById('footerGiftBtn');
+    footerGiftBtn.addEventListener('click', () => {
+      const bank = document.getElementById('bankDetails');
+      if (bank.style.display !== 'block') {
+        bank.style.display = 'block';
+        document.getElementById('giftButton').textContent = 'Ocultar datos';
+      }
+    });
   </script>
 </body>
 </html>
