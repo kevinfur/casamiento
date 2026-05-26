@@ -136,16 +136,6 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       object-position: center;
     }
 
-    /* COUNTDOWN (con fondo de imagen) */
-    #countdown-section{position:relative;overflow:hidden; padding: 90px; margin-top: 45px; margin-bottom: 45px;}
-    #countdown-section .bg{position:absolute;inset:0;background-image:url('jupa.jpg');background-size:cover;background-position:center;opacity:.25;filter:grayscale(30%);}
-    #countdown-wrap{position:relative;z-index:3;text-align:center}
-
-    #countdown{display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-    .counter-card{background:var(--white);padding:16px;border-radius:12px;width:110px;text-align:center;border:1px solid var(--soft-2);box-shadow:0 8px 30px rgba(0,0,0,0.05)}
-    .counter-card span{display:block;font-weight:700;font-size:2rem;color:var(--primary)}
-    .counter-card small{display:block;margin-top:6px;color:var(--muted);text-transform:uppercase;font-size:.6rem}
-
     /* MAP */
     .map-container{border-radius:14px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.06)}
 
@@ -283,23 +273,6 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
           <p>Hay momentos en la vida que son únicos, y queremos compartir el nuestro contigo. Nos llena de alegría que seas parte de esta celebración tan especial.</p>
           <p>Tu presencia es lo que hará este día inolvidable.</p>
           <a class="button" href="#rsvp" style="margin-top:12px">Confirmar asistencia</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- COUNTDOWN con fondo de imagen (jupa.jpg) -->
-    <section id="countdown-section">
-      <div class="bg" aria-hidden="true"></div>
-      <div class="container" id="countdown-wrap">
-        <h2 data-animate style="margin-bottom: 16px;">Preparate para festejar</h2>
-        <p data-animate style="font-weight:600">Domingo 24 de Mayo de 2026 – 12:00 hs</p>
-        <p data-animate style="font-family: var(--cursive);font-size: 20px;">Dress code: Elegante</p>
-
-        <div id="countdown" data-animate>
-          <div class="counter-card"><span id="days">--</span><small>Días</small></div>
-          <div class="counter-card"><span id="hours">--</span><small>Horas</small></div>
-          <div class="counter-card"><span id="minutes">--</span><small>Minutos</small></div>
-          <div class="counter-card"><span id="seconds">--</span><small>Segundos</small></div>
         </div>
       </div>
     </section>
@@ -500,30 +473,6 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;}
       });
     }, {threshold:0.12});
     document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
-
-    // COUNTDOWN corregido (incluye segundos)
-    const target = new Date('2026-05-24T12:00:00-03:00').getTime();
-    function updateCountdown(){
-      const now = Date.now();
-      const diff = target - now;
-      if (diff <= 0){
-        document.getElementById('countdown').innerHTML = '<div class="counter-card"><span>0</span><small>¡Hoy!</small></div>';
-        clearInterval(cntInterval);
-        return;
-      }
-      const secondsTotal = Math.floor(diff/1000);
-      const days = Math.floor(secondsTotal / (60*60*24));
-      const hours = Math.floor((secondsTotal % (60*60*24)) / (60*60));
-      const minutes = Math.floor((secondsTotal % (60*60)) / 60);
-      const seconds = secondsTotal % 60;
-
-      document.getElementById('days').textContent = String(days).padStart(2,'0');
-      document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
-    }
-    updateCountdown();
-    const cntInterval = setInterval(updateCountdown, 1000);
 
     // Gift toggle
     const giftBtn = document.getElementById('giftButton');
